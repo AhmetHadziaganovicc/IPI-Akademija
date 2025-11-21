@@ -52,6 +52,7 @@ Sve je odvojeno po folderima da bude preglednije.
 
 Sve radi direktno iz browsera, bez instalacija.
 
+
 ---
 
 ## Kako pokrenuti projekat
@@ -65,6 +66,8 @@ Samo uradi ovako:
 3. Sve ostale stranice i igre se mogu otvoriti preko menija ili linkova
 
 Radi na svakom browseru (Brave, Chrome, Edge, Firefox).
+Mala izmjena za finalni commit.
+
 
 ----
 
