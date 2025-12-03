@@ -31,13 +31,10 @@ function generateBoard() {
             cell.addEventListener("click", () => {
                 if (gameOver) return;
 
-                if (!cell.classList.contains("marked")) {
-                    markedCount++;
-                } else {
-                    markedCount--;
-                }
-
                 cell.classList.toggle("marked");
+
+                markedCount = document.querySelectorAll(".marked").length;
+
                 checkWin();
                 checkLose();
             });
@@ -55,41 +52,23 @@ function checkWin() {
     const table = document.getElementById("bingoBoard");
     const rows = table.rows;
 
-    // Rows
     for (let i = 0; i < 5; i++) {
-        let win = true;
-        for (let j = 0; j < 5; j++) {
-            if (!rows[i].cells[j].classList.contains("marked")) win = false;
-        }
-        if (win) return showWin();
+        if ([...rows[i].cells].every(c => c.classList.contains("marked"))) return showWin();
     }
 
-    // Columns
     for (let j = 0; j < 5; j++) {
-        let win = true;
+        let col = true;
         for (let i = 0; i < 5; i++) {
-            if (!rows[i].cells[j].classList.contains("marked")) win = false;
+            if (!rows[i].cells[j].classList.contains("marked")) col = false;
         }
-        if (win) return showWin();
+        if (col) return showWin();
     }
 
-    // Diagonal 1
-    let diag1 = true;
-    for (let i = 0; i < 5; i++) {
-        if (!rows[i].cells[i].classList.contains("marked")) diag1 = false;
-    }
-    if (diag1) return showWin();
-
-    // Diagonal 2
-    let diag2 = true;
-    for (let i = 0; i < 5; i++) {
-        if (!rows[i].cells[4 - i].classList.contains("marked")) diag2 = false;
-    }
-    if (diag2) return showWin();
+    if ([0,1,2,3,4].every(i => rows[i].cells[i].classList.contains("marked"))) return showWin();
+    if ([0,1,2,3,4].every(i => rows[i].cells[4-i].classList.contains("marked"))) return showWin();
 }
 
 // ---------------- PROVJERA PORAZA ----------------
-// Ako ima 15 označenih, a nema bingo → poraz
 
 function checkLose() {
     if (markedCount >= 15 && !gameOver) {
@@ -108,7 +87,6 @@ function showWin() {
 function showLose() {
     gameOver = true;
 
-    // Kreiramo lose poruku ako ne postoji
     let loseMsg = document.getElementById("loseMessage");
     if (!loseMsg) {
         loseMsg = document.createElement("div");
@@ -164,31 +142,33 @@ function randomColor() {
 
 document.getElementById("newBoardBtn").addEventListener("click", generateBoard);
 
-// ---------------- PDF DOWNLOAD ----------------
+// ---------------- PDF DOWNLOAD (SLIKA KAO NA DRUGOJ SLICI) ----------------
 
 document.getElementById("downloadPdfBtn").addEventListener("click", function () {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const pdf = new jsPDF("p", "mm", "a4");
 
-    let yPos = 20;
+    const board = document.querySelector(".board-container");
 
-    doc.setFontSize(18);
-    doc.text("Bingo Kartica – Student Fun Zone", 20, yPos);
-    yPos += 15;
+    html2canvas(board, {
+        scale: 3,
+        backgroundColor: "#0c0e12" // da PDF zadrži tamnu pozadinu
+    }).then(canvas => {
 
-    let table = document.getElementById("bingoBoard");
-    doc.setFontSize(14);
+        const imgData = canvas.toDataURL("image/png");
 
-    for (let i = 0; i < table.rows.length; i++) {
-        let rowData = "";
-        for (let j = 0; j < table.rows[i].cells.length; j++) {
-            rowData += table.rows[i].cells[j].textContent + "   ";
-        }
-        doc.text(rowData, 20, yPos);
-        yPos += 10;
-    }
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
 
-    doc.save("bingo_kartica.pdf");
+        const imgWidth = pdfWidth - 20;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        const x = 10;
+        const y = (pdfHeight - imgHeight) / 2;
+
+        pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
+        pdf.save("bingo_kartica.pdf");
+    });
 });
 
 // ---------------- POPUP EMAIL ----------------
@@ -205,7 +185,6 @@ cancelPopupBtn.addEventListener("click", () => {
     popup.style.display = "none";
 });
 
-// Slanje emaila kroz popup
 sendEmailPopupBtn.addEventListener("click", () => {
     const email = document.getElementById("emailInput").value.trim();
     if (email === "") {
