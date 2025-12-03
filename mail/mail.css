@@ -3,8 +3,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     background: rgba(0,0,0,0.7);
     display: none;
     justify-content: center;
@@ -21,19 +21,20 @@
     width: 300px;
     text-align: center;
     box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    margin: auto;
 }
 
 #mail-popup input {
     width: 90%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     border: 1px solid #aaa;
     border-radius: 6px;
 }
 
 #mail-popup button {
-    padding: 10px 15px;
-    margin: 5px;
+    padding: 20px 20px;
+    margin: 10px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
