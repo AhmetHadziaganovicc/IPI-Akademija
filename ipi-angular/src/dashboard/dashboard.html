@@ -1,0 +1,44 @@
+<div class="aurora a1"></div>
+<div class="aurora a2"></div>
+<div class="aurora a3"></div>
+
+<div class="scene">
+  <div class="dashboard">
+
+    <header class="top">
+      <div class="welcome">
+       Good {{ timeOfDay }}, <strong>{{ username }}</strong>
+      </div>
+
+      <button class="logout" (click)="logout()">Logout</button>
+    </header>
+
+    <section class="grid">
+      <div
+        class="module"
+        *ngFor="let m of modules"
+        (click)="open(m.key)"
+      >
+        <div class="icon">{{ m.icon }}</div>
+        <div class="title">{{ m.label }}</div>
+      </div>
+
+      <div
+        class="module student-funzone-module"
+        (click)="openStudentFunZone()"
+      >
+        <div class="icon">🎮</div>
+        <div class="title">Student Fun Zone</div>
+        <div class="subtitle">Bingo • Kviz • Whiteboard • Kanban • Vision Board</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="command" [class.open]="cmdOpen">
+  <input
+    placeholder="Type: habit / sleep / water / mood / meal / calendar / funzone"
+    (keyup.enter)="runCommand($event.target.value)"
+  />
+</div>

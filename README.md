@@ -1,5 +1,46 @@
 # IPI Akademija – Projekat
 
+## Moderni Tracker Sistem
+
+Projekt sadrži moderan web sistem za praćenje navika i aktivnosti koji se pokreće preko Angulara.
+
+### Kako pokrenuti Trackere
+
+1. **Pokretanje Angular servera**:
+   - Otvori terminal u glavnom folderu projekta (`ipi-angular`)
+   - Pokreni komandu:
+     
+     ng serve
+     
+   - Server će se pokrenuti na `http://localhost:4200`
+
+2. **Pristup aplikaciji**:
+   - Desni klik na `index.html` → "Open with Live Server" (u VS Code-u)
+
+### Prijava i registracija
+
+- Na početnoj stranici se nalazi moderan login i register interfejs
+- Nakon registracije, automatski te prebaci na login stranu
+- Nakon prijave ulaziš u **Dashboard**
+
+### Dashboard – 6 Modernih Trackera
+
+Na dashboardu se nalazi 6 različitih tracker-a, svaki s moderanim dizajnom:
+
+- **💧 Water Tracker** – prati dnevni unos vode
+- **🍽️ Meal Tracker** – bilježi obroke i hranu
+- **📅 Calendar Tracker** – kalendar za događaje i planove
+- **😊 Mood Tracker** – bilježi dnevno raspoloženje
+- **🔄 Habit Tracker** – prati dnevne navike
+- **😴 Sleep Tracker** – prati san i spavanje
+
+### Tehničke napomene
+- **Frontend**: Angular aplikacija
+- **Podaci se čuvaju lokalno** u browseru
+- Radi na svim modernim browserima
+- Pokreće se preko Angular development servera (`ng serve`)
+
+### ISPOD JE PROJEKAT 1
 Ovo je moj projekat rađen kroz semestar za predmet IPI.  
 Sve stranice, igre i dodatne stvari koje sam radio nalaze se u ovom jednom projektu.  
 Projekt se pokreće **offline**, samo se otvori index.html u browseru i sve radi.

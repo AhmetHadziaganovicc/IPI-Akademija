@@ -1,5 +1,3 @@
-<!-- mala izmjena -->
-
 <!DOCTYPE html>
 <html lang="bs">
 <head>
@@ -32,6 +30,12 @@
             height: 70px;
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
         nav ul {
             list-style: none;
             display: flex;
@@ -53,7 +57,40 @@
             background: #ffffff33;
         }
 
-        /* SADRŽAJ */
+        /* LOGIN / REGISTER BUTTONS */
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .login-btn {
+            background: white;
+            color: #0e4da4;
+        }
+
+        .login-btn:hover {
+            background: #e3ecff;
+        }
+
+        .register-btn {
+            background: #ffcc00;
+            color: #0e4da4;
+        }
+
+        .register-btn:hover {
+            background: #ffdb4d;
+        }
+
+        /* CONTENT */
         article {
             max-width: 1100px;
             margin: auto;
@@ -69,10 +106,6 @@
             width: 320px;
             margin-left: 20px;
             border-radius: 8px;
-        }
-
-        article ul {
-            margin-top: -5px;
         }
 
         h2 {
@@ -108,9 +141,14 @@
             <li><a href="index.html">O kursevima</a></li>
             <li><a href="popis.html">Popis kurseva</a></li>
             <li><a href="raspored.html">Raspored kurseva</a></li>
-            <li><a href="StudentFunZone.html">Student Fun Zone</a></li>
             <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
+
+        <!-- ANGULAR AUTH -->
+        <div class="auth-buttons">
+            <a href="http://localhost:4200/login" class="login-btn">Login</a>
+            <a href="http://localhost:4200/register" class="register-btn">Register</a>
+        </div>
     </nav>
 </header>
 
@@ -125,19 +163,13 @@
 
     <p>Kursevi su podijeljeni u nekoliko skupina:</p>
     <ul>
-        <li>kursevi iz osnova upotrebe računara i <a href="http://hr.wikipedia.org/wiki/Internet" target="_blank">Interneta</a></li>
-        <li>kursevi o <em>web</em>-tehnologijama, izradi <em>web</em>-stranica i <em>web</em>-sjedišta</li>
-        <li>kursevi o informatičkoj sigurnosti</li>
-        <li>uvodni kursevi o <a href="http://www.linux.com" target="_blank">Linuxu</a> i drugi.</li>
+        <li>kursevi iz osnova upotrebe računara i Interneta</li>
+        <li>web tehnologije i izrada web stranica</li>
+        <li>informatička sigurnost</li>
+        <li>Linux i drugi sistemi</li>
     </ul>
 
-    <p>Kursevi se održavaju u moderno opremljenim, klimatiziranim učionicama veličine 50m<sup>2</sup>.</p>
-
-    <p>Na osnovne kurseve mogu se prijaviti svi zainteresirani polaznici...</p>
-
     <p>Objavljen je <a href="raspored.html">raspored kurseva</a> za tekući mjesec.</p>
-
-    <p>Za sva pitanja obratite se na <a href="mailto:info@ipi-akademija.ba">info@ipi-akademija.ba</a>.</p>
 </article>
 
 <footer>
