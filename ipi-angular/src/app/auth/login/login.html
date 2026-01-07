@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg">
+        <div class="orb o1"></div>
+        <div class="orb o2"></div>
+        <div class="orb o3"></div>
+    </div>
+
+    <div class="auth-wrap">
+        <div class="card">
+            <div class="header-section">
+                <h1>Login</h1>
+                
+            </div>
+
+            <form (ngSubmit)="submit()" #loginForm="ngForm">
+                <div class="field">
+                    <input 
+                        [(ngModel)]="email" 
+                        name="email" 
+                        required 
+                        type="email"
+                        placeholder=" "
+                        id="email-input"
+                    />
+                    <label for="email-input">Email Address</label>
+                </div>
+
+                <div class="field">
+                    <input 
+                        type="password" 
+                        [(ngModel)]="password" 
+                        name="password" 
+                        required 
+                        placeholder=" "
+                        id="password-input"
+                    />
+                    <label for="password-input">Password</label>
+                </div>
+
+                <div class="error" *ngIf="error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {{ error }}
+                </div>
+
+                <button type="submit" [class.loading]="loading" [disabled]="loading">
+                    <span *ngIf="!loading">
+                        Login
+                    </span>
+                    <span *ngIf="loading" class="loading-content">
+                        <div class="spinner"></div>
+                        Logging in...
+                    </span>
+                </button>
+            </form>
+
+            <div class="switch">
+                <button class="back-btn" (click)="backToHome()">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </button>
+                
+                <div class="register-link">
+                    Don't have an account?
+                    <span (click)="goRegister()">Register</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToIPIwebsite() {
+            console.log('Opening IPI website...');
+            window.open('http://localhost:5500/index.html', '_blank');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const backBtn = document.querySelector('.back-btn');
+            if (backBtn) {
+                backBtn.addEventListener('click', function(event) {
+                    console.log('Back button clicked (fallback)');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
